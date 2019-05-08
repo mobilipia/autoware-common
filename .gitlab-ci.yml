@@ -7,8 +7,8 @@ sync:
   stage: sync
   variables:
     GIT_STRATEGY: none
-    CI_REPO: git@gitlab.com:autowarefoundation/messages.git
-    PUBLIC_REPO: git@github.com:autowarefoundation/messages.git
+    CI_REPO: git@gitlab.com:autowarefoundation/common.git
+    PUBLIC_REPO: git@github.com:autowarefoundation/common.git
     PR_ID: 0
   before_script:
     # Add ssh client
