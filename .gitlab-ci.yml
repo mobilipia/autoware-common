@@ -82,7 +82,10 @@ build_cross:
     AUTOWARE_SYSROOT: /sysroot/${AUTOWARE_TARGET_PLATFORM}
   script:
     # - ${AUTOWARE_HOME}/docker/crossbuild/build_cross_image.sh
-    - wget https://raw.githubusercontent.com/autowarefoundation/autoware/master/ros/cross_toolchain.cmake    
+    - wget https://raw.githubusercontent.com/autowarefoundation/autoware/master/ros/cross_toolchain.cmake 
+    - cd $CI_PROJECT_DIR/.. 
+    # Clone messages
+    - git clone https://github.com/autowarefoundation/messages.git  
     - 'docker run
           -e AUTOWARE_SYSROOT=${AUTOWARE_SYSROOT}
           --rm
