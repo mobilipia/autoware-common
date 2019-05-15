@@ -82,10 +82,7 @@ build_cross:
     AUTOWARE_SYSROOT: /sysroot/${AUTOWARE_TARGET_PLATFORM}
   script:
     # - ${AUTOWARE_HOME}/docker/crossbuild/build_cross_image.sh
-    - wget https://raw.githubusercontent.com/autowarefoundation/autoware/master/ros/cross_toolchain.cmake 
-    - cd $CI_PROJECT_DIR/.. 
-    # Clone messages
-    - git clone https://github.com/autowarefoundation/messages.git  
+    - wget https://raw.githubusercontent.com/autowarefoundation/autoware/master/ros/cross_toolchain.cmake  
     - 'docker run
           -e AUTOWARE_SYSROOT=${AUTOWARE_SYSROOT}
           --rm
@@ -94,6 +91,9 @@ build_cross:
           autoware/build:generic-aarch64-kinetic-20190306
           bash
             -c "
+                cd $CI_PROJECT_DIR/.. &&
+                apt-get update && apt-get install -y git &&
+                git clone https://github.com/autowarefoundation/messages.git &&
                 source ${AUTOWARE_SYSROOT}/opt/ros/kinetic/setup.bash &&
                 colcon build
                     --merge-install
